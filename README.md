@@ -11,11 +11,11 @@
 **svelte-kit-connect-cloudflare-kv** requires [`svelte-kit-sessions`](https://www.npmjs.com/package/svelte-kit-sessions) to installed.
 
 ```console
-$ npm install @upstash/redis svelte-kit-connect-cloudflare-kv svelte-kit-sessions
+$ npm install svelte-kit-connect-cloudflare-kv svelte-kit-sessions
 
-$ yarn add @upstash/redis svelte-kit-connect-cloudflare-kv svelte-kit-sessions
+$ yarn add svelte-kit-connect-cloudflare-kv svelte-kit-sessions
 
-$ pnpm add @upstash/redis svelte-kit-connect-cloudflare-kv svelte-kit-sessions
+$ pnpm add svelte-kit-connect-cloudflare-kv svelte-kit-sessions
 ```
 
 ## Usage
@@ -24,27 +24,34 @@ $ pnpm add @upstash/redis svelte-kit-connect-cloudflare-kv svelte-kit-sessions
 
 **Note** For more information about `svelte-kit-sessions`, see https://www.npmjs.com/package/svelte-kit-sessions.
 
+**Warning** Use an optional chain for implementation (`event.platform?.env?.YOUR_KV_NAMESPACE`). When [prerendering](https://kit.svelte.dev/docs/page-options#prerender) is done at build time, `event.platform` is undefined because it is before [bindings](https://kit.svelte.dev/docs/adapter-cloudflare#bindings) in Cloudflare, resulting in the following error.
+
+```console
+> Using @sveltejs/adapter-cloudflare
+TypeError: Cannot read properties of undefined (reading 'env')
+```
+
 ```ts
 // src/hooks.server.ts
 import type { Handle } from '@sveltejs/kit';
 import { sveltekitSessionHandle } from 'svelte-kit-sessions';
 import KvStore from 'svelte-kit-connect-cloudflare-kv';
 
+let sessionHandle: Handle | null = null;
+
 export const handle: Handle = async ({ event, resolve }) => {
-	const sessionHandle = sveltekitSessionHandle({
-		secret: 'secret',
+	// Initialize session handle (once)
+	if (!sessionHandle) {
 		// https://kit.svelte.dev/docs/adapter-cloudflare#bindings
-		store: new KvStore({ client: event.platform?.env?.YOUR_KV_NAMESPACE })
-	});
+		const store = new KvStore({ client: event.platform?.env?.YOUR_KV_NAMESPACE });
+		sessionHandle = sveltekitSessionHandle({
+			secret: 'secret',
+			store
+		});
+	}
+
 	return sessionHandle({ event, resolve });
 };
-```
-
-**Warning** Use an optional chain for implementation (`event.platform?.env?.YOUR_KV_NAMESPACE`). When [prerendering](https://kit.svelte.dev/docs/page-options#prerender) is done at build time, `event.platform` is undefined because it is before [bindings](https://kit.svelte.dev/docs/adapter-cloudflare#bindings) in Cloudflare, resulting in the following error.
-
-```console
-> Using @sveltejs/adapter-cloudflare
-TypeError: Cannot read properties of undefined (reading 'env')
 ```
 
 <details>
@@ -57,20 +64,27 @@ import type { Handle } from '@sveltejs/kit';
 import { sveltekitSessionHandle } from 'svelte-kit-sessions';
 import KvStore from 'svelte-kit-connect-cloudflare-kv';
 
+let sessionHandle: Handle | null = null;
+
+const handleForSession: Handle = async ({ event, resolve }) => {
+	// Initialize session handle (once)
+	if (!sessionHandle) {
+		// https://kit.svelte.dev/docs/adapter-cloudflare#bindings
+		const store = new KvStore({ client: event.platform?.env?.YOUR_KV_NAMESPACE });
+		sessionHandle = sveltekitSessionHandle({
+			secret: 'secret',
+			store
+		});
+	}
+
+	return sessionHandle({ event, resolve });
+};
+
 const yourOwnHandle: Handle = async ({ event, resolve }) => {
 	// `event.locals.session` is available
 	// your code here
 	const result = await resolve(event);
 	return result;
-};
-
-const handleForSession: Handle = async ({ event, resolve }) => {
-	const sessionHandle = sveltekitSessionHandle({
-		secret: 'secret',
-		// https://kit.svelte.dev/docs/adapter-cloudflare#bindings
-		store: new KvStore({ client: event.platform?.env?.YOUR_KV_NAMESPACE })
-	});
-	return sessionHandle({ event, resolve });
 };
 
 export const handle: Handle = sequence(handleForSession, yourOwnHandle);
@@ -88,7 +102,7 @@ new KvStore(options);
 
 ### new KvStore(options)
 
-Create a Redis store for `svelte-kit-sessions`.
+Create a Cloudflare Workers KV store for `svelte-kit-sessions`.
 
 ### Options
 
@@ -135,6 +149,13 @@ If the ttl passed is _Infinity_, the ttl to be set can be set with this option. 
 const ONE_DAY_IN_SECONDS = 86400;
 export default class KvStore implements Store {
 	constructor(options: KvStoreOptions) {
+		// The number of seconds for which the key should be visible before it expires. At least 60.
+		// (https://developers.cloudflare.com/api/operations/workers-kv-namespace-write-multiple-key-value-pairs#request-body)
+		if (options.ttl && options.ttl < 60 * 1000)
+			throw new Error(
+				'ttl must be at least 60 * 1000. please refer to https://developers.cloudflare.com/workers/runtime-apis/kv#expiration-ttlhttps://developers.cloudflare.com/api/operations/workers-kv-namespace-write-multiple-key-value-pairs#request-body.'
+			);
+
 		this.ttl = options.ttl || ONE_DAY_IN_SECONDS * 1000;
 	}
 
