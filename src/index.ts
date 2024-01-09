@@ -1,18 +1,16 @@
 import type { SessionStoreData, Store } from 'svelte-kit-sessions';
-import * as upstashRedis from '@upstash/redis';
-import * as upstashRedisCloudflare from '@upstash/redis/cloudflare';
-import * as upstashRedisFastly from '@upstash/redis/fastly';
+import type { KVNamespace } from '@cloudflare/workers-types';
 
 interface Serializer {
 	parse(s: string): SessionStoreData | Promise<SessionStoreData>;
 	stringify(data: SessionStoreData): string;
 }
 
-interface RedisStoreOptions {
+interface KvStoreOptions {
 	/**
-	 * An instance of [`@upstash/redis`](https://www.npmjs.com/package/@upstash/redis).
+	 * An KVNamespace.
 	 */
-	client: upstashRedis.Redis | upstashRedisCloudflare.Redis | upstashRedisFastly.Redis;
+	client: KVNamespace;
 	/**
 	 * The prefix of the key in redis.
 	 * @default 'sess:'
@@ -33,8 +31,15 @@ interface RedisStoreOptions {
 
 const ONE_DAY_IN_SECONDS = 86400;
 
-export default class RedisStore implements Store {
-	constructor(options: RedisStoreOptions) {
+export default class KvStore implements Store {
+	constructor(options: KvStoreOptions) {
+		// The number of seconds for which the key should be visible before it expires. At least 60.
+		// (https://developers.cloudflare.com/api/operations/workers-kv-namespace-write-multiple-key-value-pairs#request-body)
+		if (options.ttl && options.ttl < 60 * 1000)
+			throw new Error(
+				'ttl must be at least 60 * 1000. please refer to https://developers.cloudflare.com/workers/runtime-apis/kv#expiration-ttlhttps://developers.cloudflare.com/api/operations/workers-kv-namespace-write-multiple-key-value-pairs#request-body.'
+			);
+
 		this.client = options.client;
 		this.prefix = options.prefix || 'sess:';
 		this.serializer = options.serializer || JSON;
@@ -42,9 +47,9 @@ export default class RedisStore implements Store {
 	}
 
 	/**
-	 * An instance of [`@upstash/redis`](https://www.npmjs.com/package/@upstash/redis).
+	 * An KVNamespace.
 	 */
-	client: upstashRedis.Redis | upstashRedisCloudflare.Redis | upstashRedisFastly.Redis;
+	client: KVNamespace;
 
 	/**
 	 * The prefix of the key in redis.
@@ -66,29 +71,44 @@ export default class RedisStore implements Store {
 
 	async get(id: string): Promise<SessionStoreData | null> {
 		const key = this.prefix + id;
-		const storeData = await this.client.get<SessionStoreData | undefined>(key);
-		return storeData || null;
+		const storeData = await this.client.get(key, { type: 'text' });
+		return storeData ? this.serializer.parse(storeData) : null;
 	}
 
 	async set(id: string, storeData: SessionStoreData, ttl: number): Promise<void> {
+		if (ttl < 60 * 1000)
+			throw new Error(
+				'ttl must be at least 60 * 1000. please refer to https://developers.cloudflare.com/workers/runtime-apis/kv#expiration-ttlhttps://developers.cloudflare.com/api/operations/workers-kv-namespace-write-multiple-key-value-pairs#request-body.'
+			);
+
 		const key = this.prefix + id;
 		const serialized = this.serializer.stringify(storeData);
 
 		// Infinite time does not support, so it is implemented separately.
 		if (ttl !== Infinity) {
-			await this.client.set(key, serialized, { px: ttl });
+			// https://developers.cloudflare.com/api/operations/workers-kv-namespace-write-multiple-key-value-pairs#request-body
+			await this.client.put(key, serialized, { expirationTtl: ttl / 1000 });
 			return;
 		}
-		await this.client.set(key, serialized, { px: this.ttl });
+		await this.client.put(key, serialized, { expirationTtl: this.ttl / 1000 });
 	}
 
 	async destroy(id: string): Promise<void> {
 		const key = this.prefix + id;
-		await this.client.del(key);
+		await this.client.delete(key);
 	}
 
 	async touch(id: string, ttl: number): Promise<void> {
+		if (ttl < 60 * 1000)
+			throw new Error(
+				'ttl must be at least 60 * 1000. please refer to https://developers.cloudflare.com/workers/runtime-apis/kv#expiration-ttlhttps://developers.cloudflare.com/api/operations/workers-kv-namespace-write-multiple-key-value-pairs#request-body.'
+			);
+
 		const key = this.prefix + id;
-		await this.client.expire(key, ttl);
+		const storeData = await this.get(key);
+		if (storeData) {
+			const serialized = this.serializer.stringify(storeData);
+			await this.client.put(key, serialized, { expirationTtl: ttl / 1000 });
+		}
 	}
 }
