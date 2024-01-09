@@ -1,0 +1,53 @@
+name: test
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7.2.1-alpine3.18
+        ports:
+          - 6379:6379
+      srh:
+        image: hiett/serverless-redis-http:latest
+        env:
+          SRH_MODE: env
+          SRH_TOKEN: example_token
+          SRH_CONNECTION_STRING: 'redis://redis:6379'
+        ports:
+          - '8079:80'
+    strategy:
+      matrix:
+        node: ['18', '20']
+    name: node.js_${{ matrix.node }}_test
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'yarn'
+
+      - name: install
+        run: yarn install --frozen-lockfile
+
+      - name: check format
+        run: yarn format
+
+      - name: lint
+        run: yarn lint
+
+      - name: test
+        run: yarn test
+
+      - name: build
+        run: yarn build
