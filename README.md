@@ -24,7 +24,7 @@ $ pnpm add svelte-kit-connect-cloudflare-kv svelte-kit-sessions
 
 **Note** For more information about `svelte-kit-sessions`, see https://www.npmjs.com/package/svelte-kit-sessions.
 
-**Warning** Use an optional chain for implementation (`event.platform?.env?.YOUR_KV_NAMESPACE`). When [prerendering](https://kit.svelte.dev/docs/page-options#prerender) is done at build time, `event.platform` is undefined because it is before [bindings](https://kit.svelte.dev/docs/adapter-cloudflare#bindings) in Cloudflare, resulting in the following error.
+**Warning** You need to check that `event.platform` does not come out `undefined`. When [prerendering](https://kit.svelte.dev/docs/page-options#prerender) is done at build time, `event.platform` is `undefined` because it is before [bindings](https://kit.svelte.dev/docs/adapter-cloudflare#bindings) in Cloudflare, resulting in the following error.
 
 ```console
 > Using @sveltejs/adapter-cloudflare
@@ -37,20 +37,19 @@ import type { Handle } from '@sveltejs/kit';
 import { sveltekitSessionHandle } from 'svelte-kit-sessions';
 import KvStore from 'svelte-kit-connect-cloudflare-kv';
 
-let sessionHandle: Handle | null = null;
-
 export const handle: Handle = async ({ event, resolve }) => {
-	// Initialize session handle (once)
-	if (!sessionHandle) {
+	let sessionHandle: Handle | null = null;
+
+	if (event.platform && event.platform.env) {
 		// https://kit.svelte.dev/docs/adapter-cloudflare#bindings
-		const store = new KvStore({ client: event.platform?.env?.YOUR_KV_NAMESPACE });
+		const store = new KvStore({ client: event.platform.env.YOUR_KV_NAMESPACE });
 		sessionHandle = sveltekitSessionHandle({
 			secret: 'secret',
 			store
 		});
 	}
 
-	return sessionHandle({ event, resolve });
+	return sessionHandle ? sessionHandle({ event, resolve }) : resolve(event);
 };
 ```
 
@@ -67,21 +66,21 @@ import KvStore from 'svelte-kit-connect-cloudflare-kv';
 let sessionHandle: Handle | null = null;
 
 const handleForSession: Handle = async ({ event, resolve }) => {
-	// Initialize session handle (once)
-	if (!sessionHandle) {
+	let sessionHandle: Handle | null = null;
+
+	if (event.platform && event.platform.env) {
 		// https://kit.svelte.dev/docs/adapter-cloudflare#bindings
-		const store = new KvStore({ client: event.platform?.env?.YOUR_KV_NAMESPACE });
+		const store = new KvStore({ client: event.platform.env.YOUR_KV_NAMESPACE });
 		sessionHandle = sveltekitSessionHandle({
 			secret: 'secret',
 			store
 		});
 	}
 
-	return sessionHandle({ event, resolve });
+	return sessionHandle ? sessionHandle({ event, resolve }) : resolve(event);
 };
 
 const yourOwnHandle: Handle = async ({ event, resolve }) => {
-	// `event.locals.session` is available
 	// your code here
 	const result = await resolve(event);
 	return result;
