@@ -104,9 +104,9 @@ export default class KvStore implements Store {
 				'ttl must be at least 60 * 1000. please refer to https://developers.cloudflare.com/workers/runtime-apis/kv#expiration-ttlhttps://developers.cloudflare.com/api/operations/workers-kv-namespace-write-multiple-key-value-pairs#request-body.'
 			);
 
-		const key = this.prefix + id;
-		const storeData = await this.get(key);
+		const storeData = await this.get(id);
 		if (storeData) {
+			const key = this.prefix + id;
 			const serialized = this.serializer.stringify(storeData);
 			await this.client.put(key, serialized, { expirationTtl: ttl / 1000 });
 		}

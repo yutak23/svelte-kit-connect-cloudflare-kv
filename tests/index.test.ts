@@ -32,7 +32,7 @@ const dumyCookieOptions: SessionCookieOptions = {
 };
 
 describe('Test RedisStore', () => {
-	describe('client is @upstash/redis', async () => {
+	describe('client is KVNamespace', async () => {
 		const ns = (await mf.getKVNamespace('TEST_NAMESPACE')) as KVNamespace;
 		const store = new KvStore({ client: ns });
 

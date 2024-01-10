@@ -22,7 +22,6 @@
 		},
 		{
 			"matchPackageNames": [
-				"@upstash/redis",
 				"svelte-kit-sessions",
 				"@tsconfig/node18",
 				"@tsconfig/recommended",
