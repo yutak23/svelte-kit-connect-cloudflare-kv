@@ -61,7 +61,7 @@ export default class KvStore<T extends SessionStoreData> implements Store {
 	 * The serializer to use.
 	 * @default JSON
 	 */
-	serializer: Serializer;
+	serializer: Serializer<T>;
 
 	/**
 	 * Time to live in milliseconds.
