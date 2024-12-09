@@ -34,15 +34,23 @@ TypeError: Cannot read properties of undefined (reading 'env')
 ```ts
 // src/hooks.server.ts
 import type { Handle } from '@sveltejs/kit';
+import type { SessionStoreData } from 'svelte-kit-sessions';
 import { sveltekitSessionHandle } from 'svelte-kit-sessions';
 import KvStore from 'svelte-kit-connect-cloudflare-kv';
+
+declare module 'svelte-kit-sessions' {
+	interface SessionData {
+		userId: string;
+		name: string;
+	}
+}
 
 export const handle: Handle = async ({ event, resolve }) => {
 	let sessionHandle: Handle | null = null;
 
 	if (event.platform && event.platform.env) {
 		// https://kit.svelte.dev/docs/adapter-cloudflare#bindings
-		const store = new KvStore({ client: event.platform.env.YOUR_KV_NAMESPACE });
+		const store = new KvStore<SessionStoreData>({ client: event.platform.env.YOUR_KV_NAMESPACE });
 		sessionHandle = sveltekitSessionHandle({
 			secret: 'secret',
 			store

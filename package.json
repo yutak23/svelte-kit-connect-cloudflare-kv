@@ -1,6 +1,6 @@
 {
 	"name": "svelte-kit-connect-cloudflare-kv",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Cloudflare Workers KV session storage for svelte-kit-sessions.",
 	"author": "yutak23 <yuta.katayama.23+github@gmail.com> (https://github.com/yutak23)",
 	"repository": {
