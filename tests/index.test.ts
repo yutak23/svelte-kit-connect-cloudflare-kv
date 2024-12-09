@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import type { SessionCookieOptions,SessionStoreData } from 'svelte-kit-sessions';
+import type { SessionCookieOptions, SessionStoreData } from 'svelte-kit-sessions';
 import { Miniflare } from 'miniflare';
 import { KVNamespace } from '@cloudflare/workers-types';
 import KvStore from '../src/index.js';
