@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import type { SessionCookieOptions } from 'svelte-kit-sessions';
+import type { SessionCookieOptions, SessionStoreData } from 'svelte-kit-sessions';
 import { Miniflare } from 'miniflare';
 import { KVNamespace } from '@cloudflare/workers-types';
 import KvStore from '../src/index.js';
@@ -34,7 +34,7 @@ const dumyCookieOptions: SessionCookieOptions = {
 describe('Test RedisStore', () => {
 	describe('client is KVNamespace', async () => {
 		const ns = (await mf.getKVNamespace('TEST_NAMESPACE')) as KVNamespace;
-		const store = new KvStore({ client: ns });
+		const store = new KvStore<SessionStoreData>({ client: ns });
 
 		beforeEach(async () => {
 			const ids = await ns.list();
@@ -69,6 +69,7 @@ describe('Test RedisStore', () => {
 				await store.set('sessionId', { cookie: dumyCookieOptions, data: { foo: 'foo' } }, Infinity);
 				const data = await store.get('sessionId');
 				expect(data).toEqual({ cookie: dumyCookieOptions, data: { foo: 'foo' } });
+				expect(data?.data.foo).toBe('foo');
 			});
 		});
 
