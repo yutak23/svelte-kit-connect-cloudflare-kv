@@ -45,7 +45,7 @@
 		"eslint-config-airbnb-typescript": "^17.1.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-import": "^2.31.0",
-		"miniflare": "^3.20231218.1",
+		"miniflare": "^4.0.0",
 		"npm-check-updates": "^16.14.20",
 		"prettier": "^3.5.3",
 		"typescript": "^5.8.3",
