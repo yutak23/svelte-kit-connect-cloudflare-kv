@@ -71,9 +71,9 @@
   integrity sha512-nJ3RjMKGae2aF2rZ/CNeBvQPM+W5V1SUK0FYWG/uomyr7uQ2l4IayHna1ODg/OHHTEgIjwom0Mbn58iXb0WOcQ==
 
 "@cloudflare/workers-types@^4.20231218.0":
-  version "4.20250517.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20250517.0.tgz#cbd70a84ec11e072116d275877a440de5ac15287"
-  integrity sha512-DYttpORVcvKGXI+zQDHBO6r0pDsAc8fkmJg0x1PK7+t0ijfc6nMVnUF/IVJIllScOWWHHCBknCbCmV0eGq2njA==
+  version "4.20250525.0"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20250525.0.tgz#a6cf7d12a7f89e7b651279f1715f3bb7c53e95e5"
+  integrity sha512-3loeNVJkcDLb9giarUIHmDgvh+/4RtH+R/rHn4BCmME1qKdu73n/hvECYhH8BabCZplF8zQy1wok1MKwXEWC/A==
 
 "@colors/colors@1.5.0":
   version "1.5.0"
@@ -686,10 +686,10 @@
   dependencies:
     undici-types "~5.26.4"
 
-"@types/node@^18.19.100":
-  version "18.19.100"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.100.tgz#7f3aefbb6911099ab7e0902a1f373b1a4d2c1947"
-  integrity sha512-ojmMP8SZBKprc3qGrGk8Ujpo80AXkrP7G2tOT4VWr5jlr5DHjsJF+emXJz+Wm0glmy4Js62oKMdZZ6B9Y+tEcA==
+"@types/node@^18.19.103":
+  version "18.19.103"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.103.tgz#9bbd31a54e240fc469cca409d7507ebc77536458"
+  integrity sha512-hHTHp+sEz6SxFsp+SA+Tqrua3AbmlAw+Y//aEwdHrdZkYVRWdvWD3y5uPZ0flYOkgskaFWqZ/YGFm3FaFQ0pRw==
   dependencies:
     undici-types "~5.26.4"
 
@@ -3271,9 +3271,9 @@ mimic-response@^4.0.0:
   integrity sha512-e5ISH9xMYU0DzrT+jl8q2ze9D6eWBto+I8CNpe+VI+K2J/F/k3PdkdTdz4wvGVH4NTpo+NRYTVIuMQEMMcsLqg==
 
 miniflare@^3.20231218.1:
-  version "3.20250408.1"
-  resolved "https://registry.yarnpkg.com/miniflare/-/miniflare-3.20250408.1.tgz#e472b4fc42927e0c417a86d21d3f3dc39383e00e"
-  integrity sha512-0EHBNcd1yZSdTC/7GSe/kI1ge4+YuO/6QbEXDLtnVgUExKiMS5brfWsza1+Ps0/WCywKkER08lJwu6tFh7kF7g==
+  version "3.20250408.2"
+  resolved "https://registry.yarnpkg.com/miniflare/-/miniflare-3.20250408.2.tgz#c48650d29d12339a4bd74d83b5740652e3da555f"
+  integrity sha512-uTs7cGWFErgJTKtBdmtctwhuoxniuCQqDT8+xaEiJdEC8d+HsaZVYfZwIX2NuSmdAiHMe7NtbdZYjFMbIXtJsQ==
   dependencies:
     "@cspotcode/source-map-support" "0.8.1"
     acorn "8.14.0"
