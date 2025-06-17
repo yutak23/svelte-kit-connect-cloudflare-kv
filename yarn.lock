@@ -71,9 +71,9 @@
   integrity sha512-nJ3RjMKGae2aF2rZ/CNeBvQPM+W5V1SUK0FYWG/uomyr7uQ2l4IayHna1ODg/OHHTEgIjwom0Mbn58iXb0WOcQ==
 
 "@cloudflare/workers-types@^4.20231218.0":
-  version "4.20250607.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20250607.0.tgz#9cab090ebe464da9a19205ba769372d0b9957ac1"
-  integrity sha512-OYmKNzC2eQy6CNj+j0go8Ut3SezjsprCgJyEaBzJql+473WAN9ndVnNZy9lj/tTyLV6wzpQkZWmRAKGDmacvkg==
+  version "4.20250617.0"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20250617.0.tgz#222bad7f6e3783c0f20cf7a2d1a7ad3a10ab78b5"
+  integrity sha512-oUJWWKCR9bLgb7ymvM1V3Q//OpMR7jG4etCJs45bRdidmAgCog+y8w8fpuvh27JS4B8KzFNWB0YUD9xBPIf5Qg==
 
 "@colors/colors@1.5.0":
   version "1.5.0"
@@ -591,10 +591,10 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node18/-/node18-18.2.4.tgz#094efbdd70f697d37c09f34067bf41bc4a828ae3"
   integrity sha512-5xxU8vVs9/FNcvm3gE07fPbn9tl6tqGGWA9tSlwsUEkBxtRnTsNmwrV8gasZ9F/EobaSv9+nu8AxUKccw77JpQ==
 
-"@tsconfig/recommended@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@tsconfig/recommended/-/recommended-1.0.8.tgz#16483d57b56bbbd32b8c3af0eff1a40c32d006fa"
-  integrity sha512-TotjFaaXveVUdsrXCdalyF6E5RyG6+7hHHQVZonQtdlk1rJZ1myDIvPUUKPhoYv+JAzThb2lQJh9+9ZfF46hsA==
+"@tsconfig/recommended@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@tsconfig/recommended/-/recommended-1.0.9.tgz#5e81abb2860a641f3e9c6e5b9e35d1efc3781ec2"
+  integrity sha512-jf+a+mlsEi7V/RhoSgn7KlxCplFV2DVyfNEKSWBiUYKe2OuRVC/LZB5pUTA7KSB++c23LI66qc2VJXF7DCHGAA==
 
 "@tufjs/canonical-json@1.0.0":
   version "1.0.0"
@@ -686,10 +686,10 @@
   dependencies:
     undici-types "~5.26.4"
 
-"@types/node@^18.19.111":
-  version "18.19.111"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.111.tgz#e95b89efc24cc625834b43bcd70bd5591a5dfba5"
-  integrity sha512-90sGdgA+QLJr1F9X79tQuEut0gEYIfkX9pydI4XGRgvFo9g2JWswefI+WUSUHPYVBHYSEfTEqBxA5hQvAZB3Mw==
+"@types/node@^18.19.112":
+  version "18.19.112"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.112.tgz#cd2aee9c075402e0e1942a44101428881dbeb110"
+  integrity sha512-i+Vukt9POdS/MBI7YrrkkI5fMfwFtOjphSmt4WXYLfwqsfr6z/HdCx7LqT9M7JktGob8WNgj8nFB4TbGNE4Cog==
   dependencies:
     undici-types "~5.26.4"
 
