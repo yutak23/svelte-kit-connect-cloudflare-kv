@@ -71,9 +71,9 @@
   integrity sha512-dY16RXKffmugnc67LTbyjdDHZn5NoTF1yHEf2fN4+OaOnoGSp3N1x77QubTDwqZ9zECWxgQfDLjddcH8dWeFhg==
 
 "@cloudflare/workers-types@^4.20231218.0":
-  version "4.20251111.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20251111.0.tgz#759c6489cd022cc8915fdcb9ef2f30e1722ea41a"
-  integrity sha512-C8BgQRJlnxcUGycNr8pSKs7WBDQwc43p3pnuGv+Lc0KR2y6raR/9Rs7/lPqQ086ECYSiNqU6IPcbeszKbg4LXA==
+  version "4.20251119.0"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20251119.0.tgz#1640c6ba48cc087f9b296f6bd3f2d9d0abbd169c"
+  integrity sha512-DfCMGhqhvOow3NDViL3T9SgAtogc+xjtAKCfL+aWpVcAcct31P8FSFFRqlZCjcXJ5Kqw/TOjD/87UEAXAqaQZA==
 
 "@cspotcode/source-map-support@0.8.1":
   version "0.8.1"
@@ -424,15 +424,15 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
   integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
 
-"@tsconfig/node18@^18.2.4":
-  version "18.2.4"
-  resolved "https://registry.yarnpkg.com/@tsconfig/node18/-/node18-18.2.4.tgz#094efbdd70f697d37c09f34067bf41bc4a828ae3"
-  integrity sha512-5xxU8vVs9/FNcvm3gE07fPbn9tl6tqGGWA9tSlwsUEkBxtRnTsNmwrV8gasZ9F/EobaSv9+nu8AxUKccw77JpQ==
+"@tsconfig/node18@^18.2.6":
+  version "18.2.6"
+  resolved "https://registry.yarnpkg.com/@tsconfig/node18/-/node18-18.2.6.tgz#21c894382e89fb5b641303f9ea3bbc04beb7060d"
+  integrity sha512-eAWQzAjPj18tKnDzmWstz4OyWewLUNBm9tdoN9LayzoboRktYx3Enk1ZXPmThj55L7c4VWYq/Bzq0A51znZfhw==
 
-"@tsconfig/recommended@^1.0.12":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@tsconfig/recommended/-/recommended-1.0.12.tgz#e939f0186236995db5704cc4bb296596b694767c"
-  integrity sha512-S4HA/QRT24s5O42t/G+nYI2V88K6RGPKCodImparTnlBGb3MPfq8D7gkM7lL7yNQ1zbTAdBNfcwqsCbTjceNpA==
+"@tsconfig/recommended@^1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@tsconfig/recommended/-/recommended-1.0.13.tgz#269fce3ad04ca70b93269ff44cca81b950f542da"
+  integrity sha512-sySRuBfMKyKO/j2ZAhR8kSembhjuPEV4Ra3AHtmWLq51+iGaudr45crPSzNC5b7/Ctrh9dfUpBuTlYrH6rM58Q==
 
 "@types/body-parser@*":
   version "1.19.5"
