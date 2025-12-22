@@ -71,9 +71,9 @@
   integrity sha512-dY16RXKffmugnc67LTbyjdDHZn5NoTF1yHEf2fN4+OaOnoGSp3N1x77QubTDwqZ9zECWxgQfDLjddcH8dWeFhg==
 
 "@cloudflare/workers-types@^4.20231218.0":
-  version "4.20251213.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20251213.0.tgz#1da145995b9671934963e66a0083bf3a21f3fb36"
-  integrity sha512-PJAGdKfU7hs39C2YOFNLTdrfdqG6rbaVj5UuI306zS+TPokiskRLEgUXKqS6avN9Uu9Nyuf2a0hqoumLQCnJlQ==
+  version "4.20251221.0"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20251221.0.tgz#adb691f545f23d21e99a874873a78b6d3238e14c"
+  integrity sha512-VVTEhY29TtwIwjBjpRrdT51Oqu0JlXijc5TiEKFCjwouUSn+5VhzoTSaz7UBjVOu4vfvcQmjqt/dzwBUR7c95w==
 
 "@cspotcode/source-map-support@0.8.1":
   version "0.8.1"
@@ -2467,9 +2467,9 @@ micromatch@^4.0.4:
     picomatch "^2.3.1"
 
 miniflare@^3.20231218.1:
-  version "3.20250718.2"
-  resolved "https://registry.yarnpkg.com/miniflare/-/miniflare-3.20250718.2.tgz#641b360979a0542db2db7370226a52a1bc71727e"
-  integrity sha512-cW/NQPBKc+fb0FwcEu+z/v93DZd+/6q/AF0iR0VFELtNPOsCvLalq6ndO743A7wfZtFxMxvuDQUXNx3aKQhOwA==
+  version "3.20250718.3"
+  resolved "https://registry.yarnpkg.com/miniflare/-/miniflare-3.20250718.3.tgz#1ccaef956af56ba8c29de6631830fe79c97d6a92"
+  integrity sha512-JuPrDJhwLrNLEJiNLWO7ZzJrv/Vv9kZuwMYCfv0LskQDM6Eonw4OvywO3CH/wCGjgHzha/qyjUh8JQ068TjDgQ==
   dependencies:
     "@cspotcode/source-map-support" "0.8.1"
     acorn "8.14.0"
