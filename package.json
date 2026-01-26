@@ -46,7 +46,7 @@
 		"eslint-config-prettier": "^9.1.2",
 		"eslint-plugin-import": "^2.32.0",
 		"miniflare": "^3.20231218.1",
-		"npm-check-updates": "^17.1.18",
+		"npm-check-updates": "^18.3.1",
 		"prettier": "^3.8.1",
 		"typescript": "^5.9.3",
 		"vitest": "^2.1.9"
