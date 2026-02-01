@@ -71,9 +71,9 @@
   integrity sha512-dY16RXKffmugnc67LTbyjdDHZn5NoTF1yHEf2fN4+OaOnoGSp3N1x77QubTDwqZ9zECWxgQfDLjddcH8dWeFhg==
 
 "@cloudflare/workers-types@^4.20231218.0":
-  version "4.20260124.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20260124.0.tgz#f0935369fdc60f5558f24a00db7296347a692235"
-  integrity sha512-h6TJlew6AtGuEXFc+k5ifalk+tg3fkg0lla6XbMAb2AKKfJGwlFNTwW2xyT/Ha92KY631CIJ+Ace08DPdFohdA==
+  version "4.20260131.0"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20260131.0.tgz#2a87f533f79463e043d43cfa840324033b5cf1a2"
+  integrity sha512-ELgvb2mp68Al50p+FmpgCO2hgU5o4tmz8pi7kShN+cRXc0UZoEdxpDIikR0CeT7b3tV7wlnEnsUzd0UoJLS0oQ==
 
 "@cspotcode/source-map-support@0.8.1":
   version "0.8.1"
