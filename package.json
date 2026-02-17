@@ -33,7 +33,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20231218.0",
-		"@tsconfig/node18": "^18.2.6",
+		"@tsconfig/node20": "^20.1.0",
 		"@tsconfig/recommended": "^1.0.13",
 		"@types/express": "^5.0.6",
 		"@types/node": "^24.10.13",
