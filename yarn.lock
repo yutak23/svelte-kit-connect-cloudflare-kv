@@ -71,9 +71,9 @@
   integrity sha512-dY16RXKffmugnc67LTbyjdDHZn5NoTF1yHEf2fN4+OaOnoGSp3N1x77QubTDwqZ9zECWxgQfDLjddcH8dWeFhg==
 
 "@cloudflare/workers-types@^4.20231218.0":
-  version "4.20260302.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20260302.0.tgz#4fa30050d6edf5c9940d1469c2848819068f3576"
-  integrity sha512-mbFRnlu1lNCScMpXZk/X/uBPufYx5OSbq+euGonGRcY+DgOwm2kczGdK401rUh52NB0fFMEcOy/zqwxv7CdDNA==
+  version "4.20260307.1"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20260307.1.tgz#17b493ec6668ad64b5e17e8acc3f78f693195207"
+  integrity sha512-0PvWLVVD6Q64V/XhollYtc8H35Vxm2rZi8bkZbEr3lK+mNgd2FBBVhlZ6A3saAUq3giRF4US/UfU/3a8i1PEcg==
 
 "@cspotcode/source-map-support@0.8.1":
   version "0.8.1"
@@ -499,10 +499,10 @@
   dependencies:
     undici-types "~5.26.4"
 
-"@types/node@^24.10.13":
-  version "24.10.13"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.10.13.tgz#2fac25c0e30f3848e19912c3b8791a28370e9e07"
-  integrity sha512-oH72nZRfDv9lADUBSo104Aq7gPHpQZc4BTx38r9xf9pg5LfP6EzSyH2n7qFmmxRQXh7YlUXODcYsg6PuTDSxGg==
+"@types/node@^24.12.0":
+  version "24.12.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.12.0.tgz#6222e028210e5322e4f4f6767f8d88e5ea3b33d2"
+  integrity sha512-GYDxsZi3ChgmckRT9HPU0WEhKLP08ev/Yfcq2AstjrDASOYCSXeyjDsHg4v5t4jOj7cyDX3vmprafKlWIG9MXQ==
   dependencies:
     undici-types "~7.16.0"
 
