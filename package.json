@@ -48,7 +48,7 @@
 		"miniflare": "^3.20231218.1",
 		"npm-check-updates": "^18.3.1",
 		"prettier": "^3.9.5",
-		"typescript": "^5.9.3",
+		"typescript": "^6.0.3",
 		"vitest": "^2.1.9"
 	},
 	"files": [
