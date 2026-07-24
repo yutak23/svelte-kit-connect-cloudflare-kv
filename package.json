@@ -32,7 +32,7 @@
 		"svelte-kit-sessions": "^0.4.0"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20231218.0",
+		"@cloudflare/workers-types": "^5.0.0",
 		"@tsconfig/node18": "^18.2.6",
 		"@tsconfig/recommended": "^1.0.13",
 		"@types/express": "^5.0.6",
